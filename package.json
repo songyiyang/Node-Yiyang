@@ -1,0 +1,23 @@
+{
+  "name": "yiyang",
+  "version": "1.0.0",
+  "description": "yiyang project for ebay",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "keywords": [
+    "yiyang",
+    "ebay"
+  ],
+  "author": "Yiyang Song",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.12.3",
+    "ejs": "*",
+    "mongojs": "*",
+    "body-parser": "*",
+    "ebay-api": "*",
+    "async": "*"
+  }
+}
