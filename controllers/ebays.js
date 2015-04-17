@@ -1,5 +1,6 @@
 var EbayModel = require('../models/ebay');
 var async = require('async');
+var ebay = require('ebay-api');
 
 module.exports = function (app) {
 	app.get('/itemId/:itemId', function (req, res){
@@ -15,13 +16,13 @@ module.exports = function (app) {
 
 	app.get('/keywords/', function (req, res){
 		//keywords = 'canon, powershot';
-		var params = getSearchParams(
+		var params = EbayModel.getSearchParams(
 			req.query.keywords.split(','),
 			[ 'AspectHistogram' ],
 			100
 		);
 
-		var filters = getSearchFilters(
+		var filters = EbayModel.getSearchFilters(
 			[new ebay.ItemFilter("FreeShippingOnly", true)],
 			[new ebay.ItemFilter("domainName", "Digital_Cameras")]
 		);
