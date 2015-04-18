@@ -5,21 +5,16 @@ var ebay = require('ebay-api');
 module.exports = function (app) {
 	app.get('/itemId/:itemId', function (req, res){
 		// req.params.itemId = "381043343160";
-		EbayModel.ebayGetById(req.params.itemId, function(error, data) {
-			if (error){
-				res.end(JSON.stringify({err: String(error)}));
-			}else{
-				res.end(JSON.stringify(data));
-			};
-		});
+		var response = EbayModel.ebayGetById(req.params.itemId, res);
 	});
+
 
 	app.get('/keywords/', function (req, res){
 		//keywords = 'canon, powershot';
 		var params = EbayModel.getSearchParams(
 			req.query.keywords.split(','),
 			[ 'AspectHistogram' ],
-			100
+			10
 		);
 
 		var filters = EbayModel.getSearchFilters(
@@ -31,7 +26,7 @@ module.exports = function (app) {
 			if (error){
 				res.end(JSON.stringify({err: String(error)}));
 			}else{
-				res.end(JSON.stringify(items));
+				res.render('ebay', JSON.stringify(items));
 			};
 		})
 	});

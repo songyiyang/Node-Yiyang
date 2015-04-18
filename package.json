@@ -18,6 +18,7 @@
     "mongojs": "*",
     "body-parser": "*",
     "ebay-api": "*",
-    "async": "*"
+    "async": "*",
+    "cookie-parser": "*"
   }
 }

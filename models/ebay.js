@@ -1,7 +1,7 @@
 var ebay = require('ebay-api');
 
 // First Method
-exports.ebayGetById = function (itemId, callback){
+exports.ebayGetById = function (itemId, res){
 
 	ebay.ebayApiGetRequest({
 
@@ -13,8 +13,13 @@ exports.ebayGetById = function (itemId, callback){
 	    'ItemId': itemId
 	  }
 
-	}, callback);
-
+	}, function(error, data) {
+			if (error){
+				res.end(JSON.stringify({err: String(error)}));
+			}else{
+				res.end(JSON.stringify(data));
+			};
+		});
 };
 
 // Second Method
@@ -29,6 +34,9 @@ exports.ebayGetByKeywords = function (params, filters, callback){
     parser: ebay.parseItemsFromResponse
   }, callback);
 };
+
+
+
 
 exports.getSearchParams = function (keywords, outputSelector, perPage){
 	var params = {};
